@@ -15,11 +15,11 @@
  */
 package com.example.android.fragments;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
-public class MainActivity extends Activity
+public class MainActivity extends FragmentActivity
         implements HeadlinesFragment.OnHeadlineSelectedListener {
 
     /** Called when the activity is first created. */
@@ -47,7 +47,7 @@ public class MainActivity extends Activity
             firstFragment.setArguments(getIntent().getExtras());
 
             // Add the fragment to the 'fragment_container' FrameLayout
-            getFragmentManager().beginTransaction()
+            getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
         }
     }
@@ -57,7 +57,7 @@ public class MainActivity extends Activity
 
         // Capture the article fragment from the activity layout
         ArticleFragment articleFrag = (ArticleFragment)
-                getFragmentManager().findFragmentById(R.id.article_fragment);
+                getSupportFragmentManager().findFragmentById(R.id.article_fragment);
 
         if (articleFrag != null) {
             // If article frag is available, we're in two-pane layout...
@@ -69,16 +69,16 @@ public class MainActivity extends Activity
             // If the frag is not available, we're in the one-pane layout and must swap frags...
 
             // Create fragment and give it an argument for the selected article
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
             ArticleFragment newFragment = new ArticleFragment();
             Bundle args = new Bundle();
             args.putInt(ArticleFragment.ARG_POSITION, position);
             newFragment.setArguments(args);
-            FragmentTransaction transaction = getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, newFragment)
-                    .addToBackStack(null);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            // Replace whatever is in the fragment_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
 
             // Commit the transaction
             transaction.commit();

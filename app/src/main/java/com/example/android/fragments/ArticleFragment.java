@@ -15,7 +15,7 @@
  */
 package com.example.android.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,8 +27,8 @@ public class ArticleFragment extends Fragment {
     int mCurrentPosition = -1;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-        Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // If activity recreated (such as from screen rotate), restore
         // the previous article selection set by onSaveInstanceState().

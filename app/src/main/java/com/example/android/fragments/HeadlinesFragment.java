@@ -18,7 +18,7 @@ package com.example.android.fragments;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -73,7 +73,7 @@ public class HeadlinesFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Notify the parent activity of selected item
         mCallback.onArticleSelected(position);
-        
+
         // Set the item as checked to be highlighted when in two-pane layout
         getListView().setItemChecked(position, true);
     }
